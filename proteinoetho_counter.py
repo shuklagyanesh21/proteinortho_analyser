@@ -1,25 +1,26 @@
 import pandas as pd
 import os
 
+# Take input from user and save in df
 file_path = input("Enter the path to proteinortho result tsv file: ")
 if not os.path.exists(file_path):
     print("File does not exist.")
     exit()
-
-# Read the file into a DataFrame
 df = pd.read_csv(file_path, delimiter="\t")
 
 # Function to replace values based on conditions
 def replace_value(cell_value):
-    if "," in str(cell_value): 			 # For organisms with multiple genes
+    if "," in str(cell_value): 			         # For organisms with multiple genes
         comma_count = cell_value.count(",") 
         replaced_value = "P" * (comma_count + 1) # Genes are 'one' more than the comma number
-    elif "__peg_" in str(cell_value):
-        replaced_value = "P" 			 # Now only single gene organisms left so extract any word
+#########Change accordingly##############################################################################
+    elif "__peg_" in str(cell_value):            # Now only single gene organisms left so extract any word
+        replaced_value = "P" 			         # Change __peg_ to whatever is your header name standard
+#########################################################################################################
     elif cell_value == "*":
         replaced_value = "A"
-    else:
-        replaced_value = cell_value 		 # No replacement needed
+    else:    
+        replaced_value = cell_value 		     # No replacement needed
     return replaced_value
     
 # Apply the function to columns one-by-one
@@ -28,10 +29,11 @@ for column in df.columns:
     
 # Function to determine category of genes
 def determine_category(row):
-    if "A" not in row.values:
-        return "core"
-    elif row.tolist().count("P") == 1:  # convert rows to list then count P
+    p_count = sum(str(value).count("P") for value in row.values)  # Count total occurrences of 'P' in all cells
+    if p_count == 1:
         return "unique"
+    elif "A" not in row.values:
+        return "core"
     else:
         return "accessory"
 
