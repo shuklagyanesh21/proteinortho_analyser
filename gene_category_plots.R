@@ -14,7 +14,7 @@ ggplot(df_long, aes(x = X, y = Count, fill = `Gene_Type`)) +
   labs(title = "Orthologous genes in myxo_87 dataset", x = "Organism", y = "Count")
 
 # Save the plot
-ggsave("D:/PhD_1st_Year/Data/protein_ortho/myxo87_proteinortho_barplot.png", width = 13, height = 6)
+ggsave("myxo87_proteinortho_barplot.png", width = 13, height = 6)
 
 
 ######Box-Plot##################################################################
@@ -24,7 +24,7 @@ ggplot(df_long, aes(x = Gene_Type, y = Count, fill = Gene_Type)) +
   labs(title = "Orthologous genes in myxo_87 dataset", x = "Gene_Type", y = "Count")
 
 # Save the plot
-ggsave("D:/PhD_1st_Year/Data/protein_ortho/myxo87_proteinortho_boxplot.png", width = 8, height = 6)
+ggsave("myxo87_proteinortho_boxplot.png", width = 8, height = 6)
 
 
 ######Percentage Box-Plot##################################################################
@@ -43,4 +43,4 @@ ggplot(df_long, aes(x = X, y = Percentage, fill = `Gene_Type`)) +
   labs(title = "Percentage of Gene Types for Organisms", x = "Organism", y = "Percentage")
 
 # Save the plot
-ggsave("D:/PhD_1st_Year/Data/protein_ortho/myxo87_proteinortho_100barplot.png", width = 13, height = 6)
+ggsave("myxo87_proteinortho_100barplot.png", width = 13, height = 6)
