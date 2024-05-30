@@ -1,8 +1,14 @@
 import pandas as pd
 import os
+import argparse
 
-# Take input from user and save in df
-file_path = input("Enter the path to proteinortho result tsv file: ")
+# Set up argument parser
+parser = argparse.ArgumentParser(description="Process proteinortho result tsv file.")
+parser.add_argument("file_path", type=str, help="Path to the proteinortho result tsv file.")
+
+# Parse arguments
+args = parser.parse_args()
+file_path = args.file_path
 if not os.path.exists(file_path):
     print("File does not exist.")
     exit()
